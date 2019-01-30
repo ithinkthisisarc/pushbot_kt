@@ -36,6 +36,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp
 import com.qualcomm.robotcore.hardware.DcMotor
 import com.qualcomm.robotcore.util.Range
+import kotlin-stdlib
 
 import org.firstinspires.ftc.teamcode.smsHardware
 
@@ -105,14 +106,14 @@ class smsHolonomic10644 : LinearOpMode() {
             powerReducer = driveNominalPower
             
             /* check gamepad values */
-            val err = check_gamepad(); // ln 181
+            val err = check_gamepad(); // line 181
             val is_err = false
             if (err != 0) {
               is_err = true
             }
             
             /* write the values to the motors */
-            val write_err = write_to_motors() // ln 211
+            val write_err = write_to_motors() // line 211
             val is_write_err = false
             if (write_err != 0) {
               is_write_err = true
@@ -146,19 +147,7 @@ class smsHolonomic10644 : LinearOpMode() {
                 if (dpad_check && dpad_check != previousDPD) {
                     aeOffset -= 25
                 }
-                previousDPD = dpad_check
 
-                dpad_check = gamepad2.dpad_left
-                if (dpad_check && dpad_check != previousDPL) {
-                    armNominalPower -= 0.05f
-                }
-                previousDPL = dpad_check
-
-                dpad_check = gamepad2.dpad_right
-                if (dpad_check && dpad_check != previousDPR) {
-                    armNominalPower += 0.05f
-                }
-                previousDPR = dpad_check
                 return 0
             }
         }
